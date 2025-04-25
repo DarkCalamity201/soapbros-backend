@@ -1,0 +1,14 @@
+{
+  "name": "soapbros-backend",        // your project name
+  "version": "1.0.0",                // version number
+  "main": "server.js",               // entry file
+  "scripts": {
+    "start": "node server.js"        // how Render runs your app
+  },
+  "dependencies": {
+    "cors": "^2.8.5",                // allows frontend → backend requests
+    "dotenv": "^16.0.3",             // loads .env for Stripe keys
+    "express": "^4.18.2",            // the core server
+    "stripe": "^12.6.0"              // payment magic ✨
+  }
+}
