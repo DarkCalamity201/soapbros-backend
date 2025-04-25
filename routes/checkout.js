@@ -5,7 +5,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 const PRODUCTS = {
   "lavender-soap": { name: "Lavender Soap", price: 499 },
   "coffee-scrub": { name: "Coffee Scrub Soap", price: 499 },
-  "lumber-scrub": { name: "Lumber Scrub Soap", price: 499 },
+  "lumber-scrub": { name: "Lumber Scrub Soap", price: 499 }
 };
 
 router.post("/", async (req, res) => {
@@ -17,7 +17,7 @@ router.post("/", async (req, res) => {
       product_data: { name: PRODUCTS[item.id].name },
       unit_amount: PRODUCTS[item.id].price,
     },
-    quantity: item.quantity,
+    quantity: item.quantity
   }));
 
   try {
@@ -25,11 +25,12 @@ router.post("/", async (req, res) => {
       payment_method_types: ["card"],
       line_items,
       mode: "payment",
-      success_url: "http://localhost:5500/success.html",
-      cancel_url: "http://localhost:5500/checkout.html",
+      success_url: "https://soapbros.store/success.html",
+      cancel_url: "https://soapbros.store/checkout.html"
     });
     res.json({ url: session.url });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: err.message });
   }
 });
